@@ -4,19 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.innoventesmovistv.myapplication.R
-import com.innoventesmovistv.myapplication.databinding.FragmentHomeBinding
+import com.innoventesmovistv.myapplication.databinding.FragmentMoviesBinding
+import com.innoventesmovistv.myapplication.ui.base.BaseFragment
 
-class HomeFragment : Fragment() {
+class MoviesFragment : BaseFragment() {
 
     private lateinit var homeViewModel: MoviesViewModel
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentMoviesBinding
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -27,12 +24,11 @@ class HomeFragment : Fragment() {
                 ViewModelProvider(this).get(MoviesViewModel::class.java)
         binding =  DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_home,
+            R.layout.fragment_movies,
             container,
             false
         )
-        //binding = DataBindingUtil.inflater.inflate(R.layout.fragment_home, container, false)
-       // val textView: TextView = root.findViewById(R.id.text_home)
+
 
         return binding.root
     }
