@@ -15,7 +15,7 @@ import com.innoventesmovistv.myapplication.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var homeViewModel: MoviesViewModel
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
+                ViewModelProvider(this).get(MoviesViewModel::class.java)
         binding =  DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_home,
