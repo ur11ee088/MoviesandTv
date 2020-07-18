@@ -57,6 +57,7 @@ class MoviesFragment : BaseFragment() {
         searchmovie("dil")
         homeViewModel.searchMoviesResponse.observe(viewLifecycleOwner, Observer {
             view?.snackbar(it.results.toString())
+
             bindUI(it.results)
         })
     }

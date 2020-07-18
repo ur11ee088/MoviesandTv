@@ -3,12 +3,25 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="movie"
+            type="com.innoventesmovistv.myapplication.ui.model.Result" />
+    </data>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:background="@color/colorPrimaryDark"
+        android:padding="5dp"
         app:cardElevation="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,17 +29,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.facebook.drawee.view.DraweeView
+            <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/movie_image"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
+                app:setImage="@{movie.poster_path}"
+                android:background="@color/cardview_dark_background"
                 android:scaleType="centerCrop"
                 app:layout_constraintDimensionRatio="w,3:2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                fresco:viewAspectRatio="1.33"
                 tools:srcCompat="@drawable/ic_launcher_background" />
+
 
             <TextView
                 android:id="@+id/movie_title"
@@ -34,11 +51,11 @@
                 android:layout_height="52dp"
                 android:ellipsize="end"
                 android:gravity="center"
-                android:textAllCaps="true"
-                android:textSize="25sp"
                 android:maxLines="2"
-                android:textColor="@color/colorPrimary"
+                android:text="@{movie.title}"
                 android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
