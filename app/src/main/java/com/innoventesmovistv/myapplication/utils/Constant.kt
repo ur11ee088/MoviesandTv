@@ -6,4 +6,7 @@ object Constant {
     const val IMAGE_FILE_SIZE = "w185"
     const val IMAGE_BACKDROP_FILE_SIZE = "w780"
 
+        const val KEY_DETAILS = "key_movies_detals"
+
+
 }

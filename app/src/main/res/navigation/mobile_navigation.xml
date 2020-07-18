@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_movies" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.innoventesmovistv.myapplication.ui.gallery.GalleryFragment"
+        android:id="@+id/nav_details"
+        android:name="com.innoventesmovistv.myapplication.ui.details.DetailsFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_details" />
 
     <fragment
         android:id="@+id/nav_slideshow"

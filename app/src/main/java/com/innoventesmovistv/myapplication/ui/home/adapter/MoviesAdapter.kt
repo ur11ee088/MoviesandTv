@@ -1,19 +1,19 @@
 package com.innoventesmovistv.myapplication.ui.home.adapter
 
-import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.innoventesmovistv.myapplication.R
 import com.innoventesmovistv.myapplication.databinding.MovieListItemBinding
+import com.innoventesmovistv.myapplication.ui.base.RecyclerViewClickListener
 import com.innoventesmovistv.myapplication.ui.model.Result
-import com.innoventesmovistv.myapplication.utils.Constant
 import com.innoventesmovistv.myapplication.utils.RecyclerViewHolder
 
 
-class MoviesAdapter(private val listItem: List<Result>) :
+class MoviesAdapter(private val listItem: List<Result>,
+                    private val listener: RecyclerViewClickListener<Result>
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
@@ -33,6 +33,9 @@ class MoviesAdapter(private val listItem: List<Result>) :
         val binding: MovieListItemBinding =
             (holder as RecyclerViewHolder<*>).binding as MovieListItemBinding
         binding.movie = listItem[position]
+        binding.cardView.setOnClickListener {
+            listener.onRecyclerViewItemClick(it, listItem[position])
+        }
         binding.executePendingBindings()
     }
 }

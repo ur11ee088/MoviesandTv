@@ -6,21 +6,25 @@ import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.getSystemService
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.innoventesmovistv.myapplication.BuildConfig
 import com.innoventesmovistv.myapplication.R
 import com.innoventesmovistv.myapplication.databinding.FragmentMoviesBinding
 import com.innoventesmovistv.myapplication.factory.MoviesViewModelFactory
 import com.innoventesmovistv.myapplication.ui.base.BaseFragment
+import com.innoventesmovistv.myapplication.ui.base.RecyclerViewClickListener
 import com.innoventesmovistv.myapplication.ui.home.adapter.MoviesAdapter
 import com.innoventesmovistv.myapplication.ui.model.Result
+import com.innoventesmovistv.myapplication.utils.Constant.KEY_DETAILS
 import com.innoventesmovistv.myapplication.utils.snackbar
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
-class MoviesFragment : BaseFragment() {
+class MoviesFragment : BaseFragment(), RecyclerViewClickListener<Result> {
 
     private lateinit var homeViewModel: MoviesViewModel
     private lateinit var binding: FragmentMoviesBinding
@@ -56,7 +60,7 @@ class MoviesFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         searchmovie("dil")
         homeViewModel.searchMoviesResponse.observe(viewLifecycleOwner, Observer {
-            view?.snackbar(it.results.toString())
+           // view?.snackbar(it.results.toString())
 
             bindUI(it.results)
         })
@@ -129,8 +133,13 @@ class MoviesFragment : BaseFragment() {
             it.layoutManager
            it.adapter = list?.let {
                     it1->
-               MoviesAdapter( it1)
+               MoviesAdapter( it1,this)
             }
         }
+    }
+
+    override fun onRecyclerViewItemClick(view: View, item: Result) {
+        val bundle = bundleOf(KEY_DETAILS to item)
+        findNavController().navigate(R.id.nav_details, bundle)
     }
 }

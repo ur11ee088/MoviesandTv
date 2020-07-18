@@ -1,10 +1,10 @@
-package com.innoventesmovistv.myapplication.ui.gallery
+package com.innoventesmovistv.myapplication.ui.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class GalleryViewModel : ViewModel() {
+class DetailsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is gallery Fragment"
