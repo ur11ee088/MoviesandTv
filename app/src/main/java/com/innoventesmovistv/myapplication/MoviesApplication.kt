@@ -1,7 +1,6 @@
-package com.innoventesmovistv.myapplication.ui
+package com.innoventesmovistv.myapplication
 
 import android.content.Context
-import androidx.databinding.DataBindingUtil.bind
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
 import com.facebook.drawee.backends.pipeline.Fresco
