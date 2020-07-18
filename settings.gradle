@@ -1,2 +1,3 @@
+include ':material_search'
 include ':app'
 rootProject.name = "MoviesandTv"
