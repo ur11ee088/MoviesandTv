@@ -82,19 +82,7 @@ class MoviesFragment : BaseFragment(), RecyclerViewClickListener<Result> {
             queryHint = context.getString(R.string.query_hint)
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    /* query?.let {
-                        *//* movieListViewModel.query = query
-                        getMovieList()*//*
-                        Log.e("keysearch","jljjkkl"+query)
-                        searchmovie(query)
 
-                    }
-                    onActionViewCollapsed()
-                    searchItem.collapseActionView()
-                    hideSoftKeyboard()*/
-                    //onActionViewCollapsed()
-                    //searchItem.collapseActionView()
-                    //hideSoftKeyboard()
                     return true
                 }
 

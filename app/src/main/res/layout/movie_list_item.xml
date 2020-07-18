@@ -35,6 +35,7 @@
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
                 app:setImage="@{movie.poster_path}"
+                fresco:placeholderImage="@color/colorPrimaryDark"
                 android:background="@color/cardview_dark_background"
                 android:scaleType="centerCrop"
                 app:layout_constraintDimensionRatio="w,3:2"
