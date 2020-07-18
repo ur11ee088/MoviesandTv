@@ -16,25 +16,6 @@ import java.util.concurrent.TimeUnit
 @JvmSuppressWildcards
 interface MoviesApis {
 
-
-   /* @GET("movie/popular")
-    fun getPopularMovies(
-        @Query("page") page: Int = 1,
-        @Query("api_key") apiKey: String = BuildConfig.API_KEY
-    ): Response<DefaultResponse>
-
-    @GET("movie/top_rated")
-    fun getTopRatedMovies(
-        @Query("page") page: Int = 1,
-        @Query("api_key") apiKey: String = BuildConfig.API_KEY
-    ): Response<DefaultResponse>*/
-
-   /* @GET("movie/upcoming")
-    fun geUpcomingMovies(
-        @Query("page") page: Int = 1,
-        @Query("api_key") apiKey: String = BuildConfig.API_KEY
-    ): Response<DefaultResponse>*/
-
     @GET("search/movie")
     suspend fun searchMovies(
         @Query("query") query: String,
@@ -42,13 +23,7 @@ interface MoviesApis {
         @Query("api_key") apiKey: String
     ): Response<MovieMainResponse>
 
-   /* @GET("movie/{id}")
-    fun getMovieDetail(
-        @Path("id") id: Long,
-        @Query("append_to_response") details: String = "videos,credits,reviews",
-        @Query("api_key") apiKey: String = BuildConfig.API_KEY
-    ): Response<DefaultResponse>
-*/
+
 
     companion object {
         operator fun invoke(
