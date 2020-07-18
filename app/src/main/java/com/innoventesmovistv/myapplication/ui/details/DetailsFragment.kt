@@ -17,6 +17,8 @@ import com.innoventesmovistv.myapplication.databinding.FragmentMoviesBinding
 import com.innoventesmovistv.myapplication.ui.base.BaseFragment
 import com.innoventesmovistv.myapplication.ui.model.Result
 import com.innoventesmovistv.myapplication.utils.Constant
+import com.innoventesmovistv.myapplication.utils.snackbar
+import kotlin.math.roundToInt
 
 class DetailsFragment : BaseFragment() {
 
@@ -46,13 +48,23 @@ class DetailsFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         movieDetails = (arguments?.getSerializable(Constant.KEY_DETAILS) as Result?)!!
 
-            binding.detailTitle.text = movieDetails.title
+            binding.textTitle.text = movieDetails.title
         val image = Constant.IMAGE_BASE_URL + Constant.IMAGE_FILE_SIZE + movieDetails.backdrop_path
             val uri = Uri.parse(image)
-            binding.detailPoster.setImageURI(uri)
-        binding.detailOverview.text = movieDetails.overview
-        binding.vote.text = movieDetails.vote_count.toString()
-        binding.releaseDate.text = movieDetails.release_date
+            binding.imgCover.setImageURI(uri)
+
+        val image_poster = Constant.IMAGE_BASE_URL + Constant.IMAGE_FILE_SIZE + movieDetails.poster_path
+        val uri_poster = Uri.parse(image_poster)
+        binding.imgPoster.setImageURI(uri_poster)
+
+        binding.textSynopsis.text = movieDetails.overview
+        binding.textTotalVotes.text = movieDetails.vote_count.toString()
+        binding.textReleaseDate.text = movieDetails.release_date
+        binding.ratingScore.rating = movieDetails.vote_count.toFloat()
+
+        binding.fabAddFavorite.setOnClickListener {
+            view?.snackbar(movieDetails.title +" Added to Faviorate ")
+        }
 
 
 
