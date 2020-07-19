@@ -20,6 +20,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.innoventesmovistv.myapplication.BuildConfig
 import com.innoventesmovistv.myapplication.R
+import com.innoventesmovistv.myapplication.dao.Word
+import com.innoventesmovistv.myapplication.dao.WordViewModel
 import com.innoventesmovistv.myapplication.databinding.FragmentMoviesBinding
 import com.innoventesmovistv.myapplication.factory.MoviesViewModelFactory
 import com.innoventesmovistv.myapplication.ui.base.BaseFragment
@@ -35,6 +37,8 @@ class MoviesFragment : BaseFragment(), RecyclerViewClickListener<Result> {
 
     private lateinit var homeViewModel: MoviesViewModel
     private lateinit var binding: FragmentMoviesBinding
+    private lateinit var wordViewModel: WordViewModel
+
     private val factory: MoviesViewModelFactory by instance()
     val suggestionskey = ArrayList<String>()
 
@@ -49,6 +53,8 @@ class MoviesFragment : BaseFragment(), RecyclerViewClickListener<Result> {
         homeViewModel =
             ViewModelProvider(this,factory).get(MoviesViewModel::class.java)
         setViewModel(homeViewModel)
+        wordViewModel = ViewModelProvider(this).get(WordViewModel::class.java)
+
         binding =  DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_movies,
@@ -74,6 +80,14 @@ class MoviesFragment : BaseFragment(), RecyclerViewClickListener<Result> {
 
             bindUI(it.results)
             binding.progressLoading.visibility = View.GONE
+
+        })
+
+        wordViewModel.allWords.observe(viewLifecycleOwner, Observer { it ->
+            for (i in it){
+                suggestionskey.add(i.word)
+
+            }
 
         })
     }
@@ -109,14 +123,15 @@ class MoviesFragment : BaseFragment(), RecyclerViewClickListener<Result> {
                     val cursor = MatrixCursor(arrayOf(BaseColumns._ID, SearchManager.SUGGEST_COLUMN_TEXT_1))
 
                     suggestionskey.forEachIndexed { index, suggestion ->
-                        if (suggestion.contains(query, true))
+                        if ( true)
                             cursor.addRow(arrayOf(index, suggestion))
                     }
                     if (newText != null && newText.length >= 3) {
                         searchmovie(newText)
                         binding.progressLoading.visibility = View.VISIBLE
+                        val word = Word(newText)
+                        wordViewModel.insert(word)
 
-                        suggestionskey.add(newText)
                         Log.e("keysearch", "jljjkkl" + query)
                         hideSoftKeyboard()
 
