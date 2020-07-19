@@ -1,4 +1,3 @@
-
 package com.innoventesmovistv.myapplication.dao
 
 import android.app.Application
@@ -7,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
 
 
 class WordViewModel(application: Application) : AndroidViewModel(application) {

@@ -1,4 +1,3 @@
-
 package com.innoventesmovistv.myapplication.dao
 
 import android.content.Context
@@ -21,20 +20,20 @@ abstract class WordRoomDatabase : RoomDatabase() {
         private var INSTANCE: WordRoomDatabase? = null
 
         fun getDatabase(
-                context: Context,
-                scope: CoroutineScope
+            context: Context,
+            scope: CoroutineScope
         ): WordRoomDatabase {
 
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        WordRoomDatabase::class.java,
-                        "word_database"
+                    context.applicationContext,
+                    WordRoomDatabase::class.java,
+                    "word_database"
                 )
 
-                        .fallbackToDestructiveMigration()
-                        .addCallback(WordDatabaseCallback(scope))
-                        .build()
+                    .fallbackToDestructiveMigration()
+                    .addCallback(WordDatabaseCallback(scope))
+                    .build()
                 INSTANCE = instance
                 // return instance
                 instance
@@ -42,7 +41,7 @@ abstract class WordRoomDatabase : RoomDatabase() {
         }
 
         private class WordDatabaseCallback(
-                private val scope: CoroutineScope
+            private val scope: CoroutineScope
         ) : RoomDatabase.Callback() {
 
             override fun onOpen(db: SupportSQLiteDatabase) {
