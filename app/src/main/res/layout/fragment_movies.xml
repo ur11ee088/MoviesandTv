@@ -3,19 +3,27 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<LinearLayout
-    android:orientation="vertical"
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.MoviesFragment">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:spanCount="3"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:listitem="@layout/movie_list_item" />
-</LinearLayout>
+        android:orientation="vertical"
+        tools:context=".ui.home.MoviesFragment">
+
+        <ProgressBar
+            android:id="@+id/progress_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
+            tools:listitem="@layout/movie_list_item" />
+    </RelativeLayout>
 </layout>

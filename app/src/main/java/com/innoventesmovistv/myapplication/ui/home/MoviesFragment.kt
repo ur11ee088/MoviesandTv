@@ -1,12 +1,19 @@
 package com.innoventesmovistv.myapplication.ui.home
 
+import android.app.SearchManager
+import android.database.Cursor
+import android.database.MatrixCursor
 import android.os.Bundle
+import android.provider.BaseColumns
 import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
+import android.widget.AutoCompleteTextView
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.getSystemService
 import androidx.core.os.bundleOf
+import androidx.cursoradapter.widget.CursorAdapter
+import androidx.cursoradapter.widget.SimpleCursorAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -29,6 +36,8 @@ class MoviesFragment : BaseFragment(), RecyclerViewClickListener<Result> {
     private lateinit var homeViewModel: MoviesViewModel
     private lateinit var binding: FragmentMoviesBinding
     private val factory: MoviesViewModelFactory by instance()
+    val suggestionskey = ArrayList<String>()
+
 
 
 
@@ -58,11 +67,14 @@ class MoviesFragment : BaseFragment(), RecyclerViewClickListener<Result> {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        binding.progressLoading.visibility = View.VISIBLE
         searchmovie("dil")
         homeViewModel.searchMoviesResponse.observe(viewLifecycleOwner, Observer {
            // view?.snackbar(it.results.toString())
 
             bindUI(it.results)
+            binding.progressLoading.visibility = View.GONE
+
         })
     }
 
@@ -77,6 +89,13 @@ class MoviesFragment : BaseFragment(), RecyclerViewClickListener<Result> {
     private fun setUpSearchViewListener(menu: Menu) {
         val searchItem: MenuItem = menu.findItem(R.id.menu_item_search)
         val searchView = searchItem.actionView as SearchView
+        searchView.findViewById<AutoCompleteTextView>(R.id.search_src_text).threshold = 1
+
+        val from = arrayOf(SearchManager.SUGGEST_COLUMN_TEXT_1)
+        val to = intArrayOf(R.id.item_label)
+        val cursorAdapter = SimpleCursorAdapter(context, R.layout.search_item, null, from, to, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER)
+
+        searchView.suggestionsAdapter = cursorAdapter
 
         searchView.apply {
             queryHint = context.getString(R.string.query_hint)
@@ -87,13 +106,23 @@ class MoviesFragment : BaseFragment(), RecyclerViewClickListener<Result> {
                 }
 
                 override fun onQueryTextChange(newText: String): Boolean {
+                    val cursor = MatrixCursor(arrayOf(BaseColumns._ID, SearchManager.SUGGEST_COLUMN_TEXT_1))
 
+                    suggestionskey.forEachIndexed { index, suggestion ->
+                        if (suggestion.contains(query, true))
+                            cursor.addRow(arrayOf(index, suggestion))
+                    }
                     if (newText != null && newText.length >= 3) {
                         searchmovie(newText)
+                        binding.progressLoading.visibility = View.VISIBLE
+
+                        suggestionskey.add(newText)
                         Log.e("keysearch", "jljjkkl" + query)
                         hideSoftKeyboard()
 
                     }
+
+                    cursorAdapter.changeCursor(cursor)
 
                     return false
                 }
@@ -101,6 +130,20 @@ class MoviesFragment : BaseFragment(), RecyclerViewClickListener<Result> {
             })
 
         }
+        searchView.setOnSuggestionListener(object: SearchView.OnSuggestionListener {
+            override fun onSuggestionSelect(position: Int): Boolean {
+                return false
+            }
+
+            override fun onSuggestionClick(position: Int): Boolean {
+                val cursor = searchView.suggestionsAdapter.getItem(position) as Cursor
+                val selection = cursor.getString(cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1))
+                searchView.setQuery(selection, false)
+
+                return true
+            }
+
+        })
 
     }
 
@@ -130,4 +173,5 @@ class MoviesFragment : BaseFragment(), RecyclerViewClickListener<Result> {
         val bundle = bundleOf(KEY_DETAILS to item)
         findNavController().navigate(R.id.nav_details, bundle)
     }
+
 }
