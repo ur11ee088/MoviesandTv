@@ -1,4 +1,4 @@
-package com.innoventesmovistv.myapplication.ui.home.adapter
+package com.innoventesmovistv.myapplication.ui.movies.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

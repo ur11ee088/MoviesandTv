@@ -1,10 +1,10 @@
-package com.innoventesmovistv.myapplication.ui.slideshow
+package com.innoventesmovistv.myapplication.ui.bookmark
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SlideshowViewModel : ViewModel() {
+class BookMarksViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is slideshow Fragment"

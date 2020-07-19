@@ -1,4 +1,4 @@
-package com.innoventesmovistv.myapplication.ui.home
+package com.innoventesmovistv.myapplication.ui.movies
 
 import android.app.SearchManager
 import android.database.Cursor
@@ -26,10 +26,9 @@ import com.innoventesmovistv.myapplication.databinding.FragmentMoviesBinding
 import com.innoventesmovistv.myapplication.factory.MoviesViewModelFactory
 import com.innoventesmovistv.myapplication.ui.base.BaseFragment
 import com.innoventesmovistv.myapplication.ui.base.RecyclerViewClickListener
-import com.innoventesmovistv.myapplication.ui.home.adapter.MoviesAdapter
+import com.innoventesmovistv.myapplication.ui.movies.adapter.MoviesAdapter
 import com.innoventesmovistv.myapplication.ui.model.Result
 import com.innoventesmovistv.myapplication.utils.Constant.KEY_DETAILS
-import com.innoventesmovistv.myapplication.utils.snackbar
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 

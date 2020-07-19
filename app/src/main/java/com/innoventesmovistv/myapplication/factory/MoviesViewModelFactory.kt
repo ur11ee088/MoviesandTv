@@ -3,7 +3,7 @@ package com.innoventesmovistv.myapplication.factory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.innoventesmovistv.myapplication.repositories.MoviesRepositories
-import com.innoventesmovistv.myapplication.ui.home.MoviesViewModel
+import com.innoventesmovistv.myapplication.ui.movies.MoviesViewModel
 
 
 @Suppress("UNCHECKED_CAST")

@@ -1,4 +1,4 @@
-package com.innoventesmovistv.myapplication.ui.home
+package com.innoventesmovistv.myapplication.ui.movies
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -28,6 +28,10 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Item"
             android:drawableRight="@drawable/my_fav" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:background="#ECE4E4"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
