@@ -1,5 +1,5 @@
 # MoviesandTv
 initial commit
-https://user-images.githubusercontent.com/30862504/87867920-2a0a4f80-c9af-11ea-8600-5d6df142f5bc.png
-https://user-images.githubusercontent.com/30862504/87867914-25459b80-c9af-11ea-8a96-bf7c10aa74d3.png
-https://user-images.githubusercontent.com/30862504/87867916-28408c00-c9af-11ea-8929-8db535bb2e41.png
+![Screenshot from 2020-07-18 11-46-03](https://user-images.githubusercontent.com/30862504/87868016-dcdaad80-c9af-11ea-87e2-00d501d57132.png)
+![Screenshot from 2020-07-19 10-57-18](https://user-images.githubusercontent.com/30862504/87868018-df3d0780-c9af-11ea-8fbc-abc48330c7c9.png)
+![Screenshot from 2020-07-19 10-57-47](https://user-images.githubusercontent.com/30862504/87868019-e19f6180-c9af-11ea-9f42-a5356b8391b4.png)
