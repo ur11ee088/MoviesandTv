@@ -1,10 +1,11 @@
-package com.innoventesmovistv.myapplication.ui.movies.adapter
+package com.innoventesmovistv.myapplication.ui.bookmark.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.innoventesmovistv.myapplication.R
+import com.innoventesmovistv.myapplication.databinding.ItemMovieBinding
 import com.innoventesmovistv.myapplication.databinding.MovieListItemBinding
 import com.innoventesmovistv.myapplication.ui.base.RecyclerViewClickListener
 import com.innoventesmovistv.myapplication.ui.model.MovieResult
@@ -12,16 +13,16 @@ import com.innoventesmovistv.myapplication.ui.model.Result
 import com.innoventesmovistv.myapplication.utils.RecyclerViewHolder
 
 
-class MoviesAdapter(private val listItem: List<MovieResult>,
-                    private val listener: RecyclerViewClickListener<MovieResult>
+class FavAdapter(private val listItem: List<MovieResult>,
+                 private val listener: RecyclerViewClickListener<MovieResult>
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = RecyclerViewHolder(
-        DataBindingUtil.inflate<MovieListItemBinding>(
+        DataBindingUtil.inflate<ItemMovieBinding>(
             LayoutInflater.from(parent.context),
-            R.layout.movie_list_item,
+            R.layout.item_movie,
             parent,
             false
         )
@@ -31,10 +32,10 @@ class MoviesAdapter(private val listItem: List<MovieResult>,
     override fun getItemCount() = listItem.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val binding: MovieListItemBinding =
-            (holder as RecyclerViewHolder<*>).binding as MovieListItemBinding
+        val binding: ItemMovieBinding =
+            (holder as RecyclerViewHolder<*>).binding as ItemMovieBinding
         binding.movie = listItem[position]
-        binding.cardView.setOnClickListener {
+        binding.crdMovie.setOnClickListener {
             listener.onRecyclerViewItemClick(it, listItem[position])
         }
         binding.executePendingBindings()

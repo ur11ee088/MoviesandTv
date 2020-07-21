@@ -1,10 +1,9 @@
 package com.innoventesmovistv.myapplication.ui.model
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class MovieMainResponse(
-    val page: Int,
-    val results: List<Result>,
-    val total_pages: Int,
-    val total_results: Int
+    @SerializedName("results")
+    var results: List<MovieResult>
 ):Serializable

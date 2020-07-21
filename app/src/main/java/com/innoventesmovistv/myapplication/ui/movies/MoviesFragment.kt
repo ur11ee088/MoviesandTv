@@ -17,6 +17,7 @@ import androidx.cursoradapter.widget.SimpleCursorAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.innoventesmovistv.myapplication.BuildConfig
 import com.innoventesmovistv.myapplication.R
@@ -26,13 +27,14 @@ import com.innoventesmovistv.myapplication.databinding.FragmentMoviesBinding
 import com.innoventesmovistv.myapplication.factory.MoviesViewModelFactory
 import com.innoventesmovistv.myapplication.ui.base.BaseFragment
 import com.innoventesmovistv.myapplication.ui.base.RecyclerViewClickListener
+import com.innoventesmovistv.myapplication.ui.model.MovieResult
 import com.innoventesmovistv.myapplication.ui.movies.adapter.MoviesAdapter
 import com.innoventesmovistv.myapplication.ui.model.Result
 import com.innoventesmovistv.myapplication.utils.Constant.KEY_DETAILS
 import kotlinx.coroutines.launch
 import org.kodein.di.generic.instance
 
-class MoviesFragment : BaseFragment(), RecyclerViewClickListener<Result> {
+class MoviesFragment : BaseFragment(), RecyclerViewClickListener<MovieResult> {
 
     private lateinit var homeViewModel: MoviesViewModel
     private lateinit var binding: FragmentMoviesBinding
@@ -171,7 +173,7 @@ class MoviesFragment : BaseFragment(), RecyclerViewClickListener<Result> {
             )
         }
     }
-    fun bindUI(list: List<Result>) {
+    fun bindUI(list: List<MovieResult>) {
 
         binding.recyclerView.also {
             it.setHasFixedSize(true)
@@ -183,9 +185,10 @@ class MoviesFragment : BaseFragment(), RecyclerViewClickListener<Result> {
         }
     }
 
-    override fun onRecyclerViewItemClick(view: View, item: Result) {
-        val bundle = bundleOf(KEY_DETAILS to item)
-        findNavController().navigate(R.id.nav_details, bundle)
+    override fun onRecyclerViewItemClick(view: View, item: MovieResult) {
+        val bundle = bundleOf("movie_details" to item)
+        Navigation.findNavController(view)
+            .navigate(R.id.nav_details, bundle)
     }
 
 }
